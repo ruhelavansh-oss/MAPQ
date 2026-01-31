@@ -1,75 +1,71 @@
 # MAPQ Experimental Project
 
-![Project Status](https://img.shields.io/badge/Status-Active-success)
-![Language](https://img.shields.io/badge/Language-R-blue)
-![Framework](https://img.shields.io/badge/Framework-Quarto-blueviolet)
+This repository contains the source code, data processing pipelines, and analytical reports for the Modified Attitudes on Psychedelics Questionnaire (MAPQ) project. The study focuses on the psychometric validation of the instrument and the application of causal inference methods to observational behavioral data.
 
-The **Modified Attitudes on Psychedelics Questionnaire (MAPQ)** is a scientific project designed to validate a psychometric instrument for the Canadian context and explore causal relationships between demographic factors and knowledge sharing behaviors.
+## Project Overview
 
-## 🚀 Project Overview
+The MAPQ project is a scientific initiative designed to evaluate a psychometric instrument within the Canadian demographic context. It utilizes advanced statistical frameworks to ensure the reliability of the measurement and explores the causal impact of demographic variables on knowledge-sharing behaviors.
 
-This repository hosts the source code and analysis pipeline for the **MAPQ Experiment**. It is built using [Quarto](https://quarto.org/) and deployed via Posit Connect.
+### Primary Objectives
+1.  **Psychometric Validation**: Verification of the 4-factor structure through Exploratory Factor Analysis (EFA), Confirmatory Factor Analysis (CFA), and Monte Carlo simulations.
+2.  **Causal Inference**: Estimation of Average Treatment Effects (ATE) and Local Average Treatment Effects (LATE) using Double Machine Learning (DML) architectures.
+3.  **Scientific Reproducibility**: Implementation of a version-controlled, containerized workflow to ensure all results are verifiable and transparent.
 
-### Key Objectives
-1.  **Psychometric Validation**: Validate the 4-factor structure of the MAPQ using Exploratory and Confirmatory Factor Analysis (EFA/CFA) and Monte Carlo simulations.
-2.  **Causal Inference**: Apply Double Machine Learning (DML) to estimate the causal effect of gender on knowledge sharing, controlling for high-dimensional confounders.
-3.  **Reproducibility**: Ensure all analyses are transparent, version-controlled, and reproducible.
+## Analysis Modules
 
-## 📊 Analysis Modules
+The project is structured into two distinct computational modules:
 
-The project is divided into two primary computational modules:
+### 1. Psychological Metrics (analysis_psych.qmd)
+*   **Reliability Assessment**: Calculation of Cronbach's Alpha and McDonald's Omega coefficients.
+*   **Structural Modeling**: Execution of EFA and CFA on observed and synthetic datasets.
+*   **Robustness Testing**: Implementation of Monte Carlo simulations to validate factor stability across generated distributions.
 
-### 1. Psychological Metrics (`analysis_psych.qmd`)
-*   **Reliability**: Cronbach's Alpha and McDonald's Omega.
-*   **Factor Analysis**: EFA and CFA on both observed and simulated data.
-*   **Simulation**: Monte Carlo simulation (`mvrnorm`) to test structural robustness.
+### 2. Causal Machine Learning (analysis_dml.qmd)
+*   **Estimation Framework**: Utilization of the Interactive Regression Model (IRM) within the DoubleML framework.
+*   **Class Balancing**: Application of the Synthetic Minority Over-sampling Technique (SMOTE) to mitigate demographic group imbalance.
+*   **Instrumental Variables**: Simulation-based LATE estimation to address potential unobserved confounding.
 
-### 2. Causal Machine Learning (`analysis_dml.qmd`)
-*   **Double Machine Learning**: Estimation of Average Treatment Effects (ATE) using the `DoubleML` package.
-*   **SMOTE**: Synthetic Minority Over-sampling Technique to handle class imbalance.
-*   **LATE**: Local Average Treatment Effect estimation using Instrumental Variables (Simulated).
+## Technical Stack
 
-## 🛠️ Tech Stack
+*   **Platform**: Quarto Publishing System
+*   **Language**: R System for Statistical Computing
+*   **Deployment**: Posit Connect / Posit Cloud
+*   **Core Libraries**:
+    *   `psych`, `psychTools`: Psychometric analytics
+    *   `DoubleML`, `mlr3`: Causal inference and machine learning
+    *   `lavaan`: Structural equation modeling
+    *   `knitr`, `kableExtra`: Scientific reporting and table generation
 
-*   **Language**: R (Primary)
-*   **Publishing**: Quarto
-*   **Deployment**: Posit Cloud / Connect
-*   **Key Libraries**:
-    *   `psych`, `psychTools`: Psychometrics
-    *   `DoubleML`, `mlr3`: Causal Machine Learning
-    *   `lavaan`: Structural Equation Modeling
-    *   `knitr`, `kableExtra`: Reporting
-
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 mapq-analysis/
-├── _quarto.yml          # Project configuration (Navigation, Theme)
-├── index.qmd            # Home page (Project Scope)
-├── about.qmd            # Author & adaptation context
-├── analysis_psych.qmd   # Psychometric analysis source
-├── analysis_dml.qmd     # Causal ML analysis source
-├── data/                # Observational datasets (Secured)
-├── styles.css           # Custom CSS for scientific formatting
-├── deploy.R             # Deployment script for Posit Connect
-└── manifest.json        # Environment manifest for reproduction
+├── _quarto.yml          # Global configuration and navigation
+├── index.qmd            # Project Introduction and Scope
+├── about.qmd            # Author metadata and study context
+├── analysis_psych.qmd   # Psychometric analysis implementation
+├── analysis_dml.qmd     # Causal machine learning implementation
+├── data/                # Observational datasets
+├── styles.css           # Scientific formatting and visual styles
+├── README.md            # Project documentation
+└── LICENSE              # MIT License documentation
 ```
 
-## 🔐 Security & Privacy
+## Security and Data Integrity
 
-*   **Data Protection**: Raw data is stored in restricted directories.
-*   **Configuration**: Sensitive API keys and credentials are managed via `.env` files (git-ignored) and environment variables.
+*   **Confidentiality**: Access to raw observational data is restricted to authorized environments.
+*   **Secret Management**: Sensitive configuration parameters and API credentials are managed via environment variables and are excluded from version control.
 
-## ✍️ Author
+## Author
 
 **Vansh Singh Ruhela**  
-*Independent Researcher*  
+Independent Researcher  
 Centre for Criminology and Sociolegal Studies, University of Toronto  
 [GitHub](https://github.com/ruhelavansh-oss) | [ORCID](https://orcid.org/0009-0004-1750-3592)
 
-## 📄 License
+## License
 
-This project is open-source. Please view the [LICENSE](LICENSE) file for more details.
+This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for the full text.
 
 ---
-*Copyright © 2026 Vansh Singh Ruhela.*
+*Copyright © 2026 Vansh Singh Ruhela. All rights reserved.*
