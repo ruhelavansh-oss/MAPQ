@@ -40,7 +40,7 @@ website:
             text: "Home"
           - href: about.qmd
             text: "About"
-      - section: "Modules"
+      - section: "Code"
         contents:
           - href: analysis_psych.qmd
             text: "Psychological Metrics"
