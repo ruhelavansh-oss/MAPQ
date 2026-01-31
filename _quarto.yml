@@ -4,6 +4,7 @@ project:
   title: "MAPQ Experimental Project"
   render:
     - "*.qmd"
+    - "!R_libs/**"
 
 author:
   - name: Vansh Singh Ruhela

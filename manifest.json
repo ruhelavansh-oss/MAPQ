@@ -11,7 +11,7 @@
   },
   "quarto": {
     "version": "1.8.26",
-    "engines": ["knitr", "markdown"]
+    "engines": ["markdown", "knitr"]
   },
   "packages": {
     "DiceKriging": {
@@ -4290,25 +4290,34 @@
   },
   "files": {
     "_quarto.yml": {
-      "checksum": "1e679093d9d589ba1e9ea06c0b5edc3b"
+      "checksum": "70354cd9e6a869a427516b55cb909782"
+    },
+    "_site/about.html": {
+      "checksum": "9e910fe388436861ebb53aafd1cb80a0"
     },
     "_site/analysis_dml_files/figure-html/dml-fit-plot-1.png": {
       "checksum": "f78eb44d112f566c3b9069a1e0f69fba"
     },
     "_site/analysis_dml.html": {
-      "checksum": "0d91ae3d1c8c4dbbe2e61f59ddaaf9eb"
+      "checksum": "6046407cf05699f213feb92d64760402"
+    },
+    "_site/analysis_psych_files/figure-html/pairs-plot-1.png": {
+      "checksum": "fc9d07ebb77202b32e902f6fc99df651"
+    },
+    "_site/analysis_psych_files/figure-html/reliability-1.png": {
+      "checksum": "9ae22409645c0f1a06385749f52f68cf"
+    },
+    "_site/analysis_psych_files/figure-html/sim-efa-plot-1.png": {
+      "checksum": "35d26455945522b505e3b2ea6750b790"
+    },
+    "_site/analysis_psych.html": {
+      "checksum": "d1e98d31d56f06fe52fda228a296d303"
     },
     "_site/index.html": {
-      "checksum": "7f4db7c7acc79f899a729e7c3fd5ea75"
-    },
-    "_site/R_libs/quarto/doc/advanced-vignettes.html": {
-      "checksum": "7d788932aab0e2d59132c66f64e4e4a9"
-    },
-    "_site/R_libs/quarto/doc/dynamic-metadata.html": {
-      "checksum": "97a13dc58fcb2f7c170e4b59ff2808d8"
+      "checksum": "a436eacb1860b67c15e3092d98d24725"
     },
     "_site/search.json": {
-      "checksum": "c550f4fdd7e500e38d1ed32450ba0879"
+      "checksum": "9d25e0528b8f8c884a1ca779a657738f"
     },
     "_site/site_libs/bootstrap/bootstrap-4c6940bfffdaf28543fbece7205d6e15.min.css": {
       "checksum": "4c6940bfffdaf28543fbece7205d6e15"
@@ -4333,6 +4342,12 @@
     },
     "_site/site_libs/lightable-0.0.1/lightable.css": {
       "checksum": "25547ce4d44910ea8f377212d34397fa"
+    },
+    "_site/site_libs/pagedtable-1.1/css/pagedtable.css": {
+      "checksum": "7773d8ddc5fe6c5adbde2349b933127f"
+    },
+    "_site/site_libs/pagedtable-1.1/js/pagedtable.js": {
+      "checksum": "8b657fbd2add193c16394a3f8339d3cf"
     },
     "_site/site_libs/quarto-html/anchor.min.js": {
       "checksum": "91bcf6cd1fd88fec3f109811e5fc3546"
@@ -6936,7 +6951,7 @@
       "checksum": "19ad5f4d657518541f111e6fecf7e9b9"
     },
     "R_libs/quarto/doc/hello-pdf.log": {
-      "checksum": "483ac221cd9d54f7e65f266b8823c289"
+      "checksum": "1ed0c0e37da2903571bb0912b5913190"
     },
     "R_libs/quarto/doc/hello-pdf.qmd": {
       "checksum": "8435e015ab8e9e5eae0d97b48ee03d7b"
