@@ -33,9 +33,9 @@ This scientific project encompasses two primary analytical pillars:
 ## Security & Reproducibility
 
 This project adheres to strict **DevSecOps** principles:
-*   **Data Privacy**: All sensitive data handling is secured via environment-variable encryption logic.
-*   **Reproducibility**: The entire workflow is version-controlled and containerized for deployment on Posit Connect.
-*   **Scientific Rigor**: Analysis uses advanced statistical packages (`psych`, `DoubleML`, `lavaan`) to ensure robust results.
+-   **Data Privacy**: All sensitive data handling is secured via environment-variable encryption logic.
+-   **Reproducibility**: The entire workflow is version-controlled and containerized for deployment on Posit Connect.
+-   **Scientific Rigor**: Analysis uses advanced statistical packages (`psych`, `DoubleML`, `lavaan`) to ensure robust results.
 
 ## Data Source
 
