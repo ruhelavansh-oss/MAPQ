@@ -1,11 +1,12 @@
 ---
-title: "MAPQ Experiment"
+title: "MAPQ Experimental Project"
 subtitle: "Modified Attitudes on Psychedelics Questionnaire"
 author:
   - name: Vansh Singh Ruhela
     orcid: 0009-0004-1750-3592
     url: https://github.com/ruhelavansh-oss
-    affiliation: Independent Researcher
+    email: vansh.ruhela@mail.utoronto.ca
+    affiliation: Centre for Criminology and Sociolegal Studies, University of Toronto
 date: last-modified
 format:
   html:

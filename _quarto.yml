@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: _site
-  title: "MAPQ Experiment"
+  title: "MAPQ Experimental Project"
   render:
     - "*.qmd"
 
@@ -9,12 +9,16 @@ author:
   - name: Vansh Singh Ruhela
     corresponding: true
     orcid: 0009-0004-1750-3592
-    email: ruhela.vansh@gmail.com
+    email: vansh.ruhela@mail.utoronto.ca
     affiliations:
-      - name: Independent Researcher
+      - name: Centre for Criminology and Sociolegal Studies, School of Graduate Studies, University of Toronto St. George
+        address: Second Floor, Canadiana Gallery, 14 Queen’s Park Crescent West
+        city: Toronto
+        state: ON
+        postal-code: M5S 3K9
 
 website:
-  title: "MAPQ Experiment"
+  title: "MAPQ Experimental Project"
   page-footer: 
     left: "Copyright 2026, Vansh Singh Ruhela" 
     right: 
@@ -39,9 +43,9 @@ website:
       - section: "Analysis Modules"
         contents:
           - href: analysis_psych.qmd
-            text: "Psychometrics Validation"
+            text: "Psychological Metrics"
           - href: analysis_dml.qmd
-            text: "Causal Inference (DML)"
+            text: "Causal Machine Learning"
 
   navbar:
     left:
@@ -49,9 +53,9 @@ website:
         text: Home
       - text: Analysis
         menu:
-          - text: Psychometrics
+          - text: Psychological Metrics
             href: analysis_psych.qmd
-          - text: Causal Inference (DML)
+          - text: Causal Machine Learning
             href: analysis_dml.qmd
       - text: About
         menu:
@@ -71,9 +75,10 @@ format:
     theme:
       light: cosmo
       dark: darkly
+    css: styles.css
     fontsize: 1.1em
-    fig-width: 8
-    fig-height: 6
+    fig-width: 10
+    fig-height: 7
     fig-responsive: true
 
 execute:
