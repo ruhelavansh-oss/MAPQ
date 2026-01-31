@@ -170,8 +170,6 @@ Confirmatory Factor Analysis defines the theoretical model where each latent con
 ```{r}
 #| label: sim-cfa-model
 
-# Define Model using explicit variable names
-# Assuming columns are EE1..EE5, EA1..EA5 etc. from the dataset
 cfa_model <- '
   LC1 =~ EE1 + EE2 + EE3 + EE4 + EE5
   LC2 =~ EA1 + EA2 + EA3 + EA4 + EA5

@@ -23,7 +23,7 @@ packages <- c(
 install_if_missing <- function(pkg) {
   if (!require(pkg, character.only = TRUE)) {
     message(paste("Installing", pkg, "..."))
-    install.packages(pkg, dependencies = TRUE)
+    install.packages(pkg, dependencies = TRUE, repos = "https://cloud.r-project.org")
   } else {
     message(paste(pkg, "is already installed."))
   }
