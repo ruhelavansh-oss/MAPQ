@@ -39,7 +39,7 @@ This project adheres to strict **DevSecOps** principles:
 
 ## Data Source
 
-The data is sourced from the `MAPQ_TKARONTO-3.xlsx` dataset, containing responses from the Canadian cohort. The analysis focuses on the `MAPQII` and `MAPQ + KS + KnAcqS` datasheets.
+The data is sourced from an observational dataset, containing responses from the Canadian cohort. The analysis focuses on the `MAPQII` and `MAPQ + KS + KnAcqS` datasheets.
 
 ::: {.callout-note}
 **Note on Authorship**: This analysis, design, and implementation were solely contributed by **Vansh Singh Ruhela**.
