@@ -41,10 +41,10 @@ website:
             text: "About"
       - section: "Code"
         contents:
-          - href: analysis_psych.qmd
-            text: "PSY"
-          - href: analysis_dml.qmd
-            text: "DML"
+          - section: "PSY"
+            href: analysis_psych.qmd
+          - section: "DML"
+            href: analysis_dml.qmd
 
   navbar:
     left:
