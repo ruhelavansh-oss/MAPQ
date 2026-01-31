@@ -37,6 +37,7 @@ This project adheres to strict **DevSecOps** principles:
 -   **Data Privacy**: All sensitive data handling is secured via environment-variable encryption logic.
 -   **Reproducibility**: The entire workflow is version-controlled and containerized for deployment on Posit Connect.
 -   **Scientific Rigor**: Investigation uses advanced statistical packages (`psych`, `DoubleML`, `lavaan`) to ensure robust results.
+-   **Open Source**: The project is licensed under the [MIT License](LICENSE).
 
 ## Data Source
 
