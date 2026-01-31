@@ -25,7 +25,9 @@ This project, including the conceptualization, data analysis, and technical impl
 The **Modified Attitudes on Psychedelics Questionnaire (MAPQ)** is a psychometric instrument adapted from the original **APQ**.
 
 ## Adaptation Context
+
 This version of the questionnaire was specifically adapted and validated for a cohort of **Canadian residents**. The modifications account for:
+
 *   Regional cultural nuances regarding psychedelic substances.
 *   The specific regulatory environment in Canada (e.g., medical access programs).
 *   Linguistic norms of the target population.
