@@ -40,10 +40,28 @@ website:
             text: "About"
       - section: "Code"
         contents:
-          - text: "PSY"
+          - section: "PSY"
             href: analysis_psych.qmd
-          - text: "DML"
+            contents:
+              - text: "Moment Metrics"
+                href: analysis_psych.qmd#moment-metrics
+              - text: "Reliability Test"
+                href: analysis_psych.qmd#reliability-test
+              - text: "Construct Correlations"
+                href: analysis_psych.qmd#construct-correlations
+              - text: "Monte Carlo Sim"
+                href: analysis_psych.qmd#monte-carlo-simulation
+              - text: "Factor Analysis"
+                href: analysis_psych.qmd#factor-analysis
+          - section: "DML"
             href: analysis_dml.qmd
+            contents:
+              - text: "SMOTE"
+                href: analysis_dml.qmd#advanced-preprocessing-smote
+              - text: "DML Analysis (ATE)"
+                href: analysis_dml.qmd#double-machine-learning-analysis
+              - text: "IV Analysis (LATE)"
+                href: analysis_dml.qmd#instrumental-variable-analysis-late
 
   navbar:
     left:
