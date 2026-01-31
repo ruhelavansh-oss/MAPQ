@@ -2035,6 +2035,31 @@
         "Built": "R 4.5.2; aarch64-apple-darwin20; 2025-11-01 02:09:42 UTC; unix"
       }
     },
+    "lavaan": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "lavaan",
+        "Title": "Latent Variable Analysis",
+        "Version": "0.6-19",
+        "Authors@R": "c(person(given   = \"Yves\", family = \"Rosseel\",\n                    role    = c(\"aut\", \"cre\"),\n                    email   = \"Yves.Rosseel@UGent.be\",\n                    comment = c(ORCID = \"0000-0002-4129-4477\")),\n             person(given = c(\"Terrence\",\"D.\"), family = \"Jorgensen\",\n                    role = \"aut\",\n                    email = \"TJorgensen314@gmail.com\",\n                    comment = c(ORCID = \"0000-0001-5111-6773\")),\n             person(given = c(\"Luc\"), family = \"De Wilde\",\n                    role = \"aut\",\n                    email = \"Luc.DeWilde@UGent.be\"),\n             person(given = \"Daniel\", family = \"Oberski\",\n                    role = \"ctb\",\n                    email = \"daniel.oberski@gmail.com\"),\n             person(given = \"Jarrett\", family = \"Byrnes\", \n                    role = \"ctb\",\n                    email = \"byrnes@nceas.ucsb.edu\"),\n             person(given = \"Leonard\", family = \"Vanbrabant\",\n                    role = \"ctb\",\n                    email = \"info@restriktor.org\"),\n             person(given = \"Victoria\", family = \"Savalei\",\n                    role = \"ctb\",\n                    email = \"vsavalei@ubc.ca\"),\n             person(given = \"Ed\", family = \"Merkle\",\n                    role = \"ctb\",\n                    email = \"merklee@missouri.edu\"),\n             person(given = \"Michael\", family = \"Hallquist\",\n                    role = \"ctb\",\n                    email = \"michael.hallquist@gmail.com\"),\n             person(given = \"Mijke\", family = \"Rhemtulla\",\n                    role = \"ctb\",\n                    email = \"mrhemtulla@ucdavis.edu\"),\n             person(given = \"Myrsini\", family = \"Katsikatsou\",\n                    role = \"ctb\",\n                    email = \"mirtok2@gmail.com\"),\n             person(given = \"Mariska\", family = \"Barendse\",\n                    role = \"ctb\",\n                    email = \"m.t.barendse@gmail.com\"),\n             person(given = c(\"Nicholas\"), family = \"Rockwood\",\n                    role = \"ctb\",\n                    email = \"nrockwood@rti.org\"),\n             person(given = \"Florian\", family = \"Scharf\",\n                    role = \"ctb\",\n                    email = \"florian.scharf@uni-leipzig.de\"),\n             person(given = \"Han\", family = \"Du\",\n                    role = \"ctb\",\n                    email = \"hdu@psych.ucla.edu\"),\n             person(given = \"Haziq\", family = \"Jamil\",\n                    role = \"ctb\",\n                    email = \"haziq.jamil@ubd.edu.bn\",\n                    comment = c(ORCID = \"0000-0003-3298-1010\")),\n             person(given = \"Franz\", family = \"Classe\",\n                    role  = \"ctb\",\n                    email = \"classe@dji.de\")\n            )",
+        "Description": "Fit a variety of latent variable models, including confirmatory\n   factor analysis, structural equation modeling and latent growth curve models.",
+        "Depends": "R(>= 3.4)",
+        "Imports": "methods, stats4, stats, utils, graphics, MASS, mnormt,\npbivnorm, numDeriv, quadprog",
+        "BugReports": "https://github.com/yrosseel/lavaan/issues",
+        "License": "GPL (>= 2)",
+        "LazyData": "yes",
+        "ByteCompile": "true",
+        "URL": "https://lavaan.ugent.be",
+        "NeedsCompilation": "no",
+        "Packaged": "2024-09-26 12:26:32 UTC; yves",
+        "Author": "Yves Rosseel [aut, cre] (<https://orcid.org/0000-0002-4129-4477>),\n  Terrence D. Jorgensen [aut] (<https://orcid.org/0000-0001-5111-6773>),\n  Luc De Wilde [aut],\n  Daniel Oberski [ctb],\n  Jarrett Byrnes [ctb],\n  Leonard Vanbrabant [ctb],\n  Victoria Savalei [ctb],\n  Ed Merkle [ctb],\n  Michael Hallquist [ctb],\n  Mijke Rhemtulla [ctb],\n  Myrsini Katsikatsou [ctb],\n  Mariska Barendse [ctb],\n  Nicholas Rockwood [ctb],\n  Florian Scharf [ctb],\n  Han Du [ctb],\n  Haziq Jamil [ctb] (<https://orcid.org/0000-0003-3298-1010>),\n  Franz Classe [ctb]",
+        "Maintainer": "Yves Rosseel <Yves.Rosseel@UGent.be>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-09-26 15:50:14 UTC",
+        "Built": "R 4.5.0; ; 2025-04-01 06:49:39 UTC; unix"
+      }
+    },
     "lgr": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -2592,6 +2617,29 @@
         "Built": "R 4.5.2; aarch64-apple-darwin20; 2025-11-01 02:09:42 UTC; unix"
       }
     },
+    "numDeriv": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "numDeriv",
+        "Version": "2016.8-1.1",
+        "Title": "Accurate Numerical Derivatives",
+        "Description": "Methods for calculating (usually) accurate\n\tnumerical first and second order derivatives. Accurate calculations \n\tare done using 'Richardson''s' extrapolation or, when applicable, a\n\tcomplex step derivative is available. A simple difference \n\tmethod is also provided. Simple difference is (usually) less accurate\n\tbut is much quicker than 'Richardson''s' extrapolation and provides a \n\tuseful cross-check. \n\tMethods are provided for real scalar and vector valued functions. ",
+        "Depends": "R (>= 2.11.1)",
+        "LazyLoad": "yes",
+        "ByteCompile": "yes",
+        "License": "GPL-2",
+        "Copyright": "2006-2011, Bank of Canada. 2012-2016, Paul Gilbert",
+        "Author": "Paul Gilbert and Ravi Varadhan",
+        "Maintainer": "Paul Gilbert <pgilbert.ttv9z@ncf.ca>",
+        "URL": "http://optimizer.r-forge.r-project.org/",
+        "NeedsCompilation": "no",
+        "Packaged": "2019-06-04 11:04:44 UTC; hornik",
+        "Repository": "CRAN",
+        "Date/Publication": "2019-06-06 09:51:09 UTC",
+        "Built": "R 4.5.0; ; 2025-03-31 21:55:04 UTC; unix"
+      }
+    },
     "openssl": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -2734,6 +2782,27 @@
         "Date/Publication": "2025-07-24 15:50:02 UTC",
         "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-07-24 16:06:13 UTC; unix",
         "Archs": "parallelly.so.dSYM"
+      }
+    },
+    "pbivnorm": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "pbivnorm",
+        "Title": "Vectorized Bivariate Normal CDF",
+        "Version": "0.6.0",
+        "Date": "2015-01-23",
+        "Author": "Fortran code by Alan Genz.  R code by Brenton Kenkel,\n    based on Adelchi Azzalini's 'mnormt' package.",
+        "Maintainer": "Brenton Kenkel <brenton.kenkel@gmail.com>",
+        "Description": "Provides a vectorized R function for calculating\n    probabilities from a standard bivariate normal CDF.",
+        "License": "GPL (>= 2)",
+        "URL": "https://github.com/brentonk/pbivnorm",
+        "Packaged": "2015-01-23 14:46:13 UTC; brenton",
+        "NeedsCompilation": "yes",
+        "Repository": "CRAN",
+        "Date/Publication": "2015-01-23 16:18:21",
+        "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-03-31 22:15:49 UTC; unix",
+        "Archs": "pbivnorm.so.dSYM"
       }
     },
     "pillar": {
@@ -3061,6 +3130,28 @@
         "Repository": "CRAN",
         "Date/Publication": "2025-06-22 23:30:02 UTC",
         "Built": "R 4.5.0; ; 2025-06-23 00:02:11 UTC; unix"
+      }
+    },
+    "quadprog": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "quadprog",
+        "Type": "Package",
+        "Title": "Functions to Solve Quadratic Programming Problems",
+        "Version": "1.5-8",
+        "Date": "2019-11-20",
+        "Author": "S original by Berwin A. Turlach <Berwin.Turlach@gmail.com> \n        R port by Andreas Weingessel <Andreas.Weingessel@ci.tuwien.ac.at>\n        Fortran contributions from Cleve Moler (dposl/LINPACK and\n        (a modified version of) dpodi/LINPACK) ",
+        "Maintainer": "Berwin A. Turlach <Berwin.Turlach@gmail.com>",
+        "Description": "This package contains routines and documentation for\n        solving quadratic programming problems.",
+        "Depends": "R (>= 3.1.0)",
+        "License": "GPL (>= 2)",
+        "NeedsCompilation": "yes",
+        "Packaged": "2019-11-20 06:04:34 UTC; berwin",
+        "Repository": "CRAN",
+        "Date/Publication": "2019-11-20 08:20:02 UTC",
+        "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-03-31 22:00:17 UTC; unix",
+        "Archs": "quadprog.so.dSYM"
       }
     },
     "quarto": {
@@ -4207,14 +4298,14 @@
     "_site/analysis_dml.html": {
       "checksum": "52bbadf92f01614a46eb386e61437306"
     },
-    "_site/analysis_psych_files/figure-html/efa-plot-1.png": {
-      "checksum": "40682604dff56bd4e10b19f1526a303d"
-    },
     "_site/analysis_psych_files/figure-html/pairs-plot-1.png": {
-      "checksum": "f7a3bdb6c662e5b81e5d2253ebe80a80"
+      "checksum": "8e35f5e10cb54ef7de8b7aab86135bd6"
+    },
+    "_site/analysis_psych_files/figure-html/sim-efa-plot-1.png": {
+      "checksum": "985e8f121b5c327b095348c1c3bcfd73"
     },
     "_site/analysis_psych.html": {
-      "checksum": "3615b5330c534f9b1a71c13c51596eb2"
+      "checksum": "0ed96cc03b6a06f06db86547a8051899"
     },
     "_site/index.html": {
       "checksum": "6e95532663dd1c5e3cb5fbe849a56b36"
@@ -4226,7 +4317,7 @@
       "checksum": "ace9d3a9c2c80164cf84700fff6adc8e"
     },
     "_site/search.json": {
-      "checksum": "1b26d4caba240a4240c55c0ce10db42e"
+      "checksum": "6adad0f59840b9cd12611c84d56329f3"
     },
     "_site/site_libs/bootstrap/bootstrap-3d184695bb015ad6d4eccee7f8f70647.min.css": {
       "checksum": "3d184695bb015ad6d4eccee7f8f70647"
@@ -4310,7 +4401,7 @@
       "checksum": "53c9ac54147bae8cf4926f4ff3f4f8de"
     },
     "analysis_psych.qmd": {
-      "checksum": "d473dc55a697059c3cca24a6fd096c0b"
+      "checksum": "8ded2a61360b2de9d56fb410efb1c103"
     },
     "data/MAPQ_TKARONTO-3.xlsx": {
       "checksum": "5200997fe1f9d79bf04990cc8a46576b"
