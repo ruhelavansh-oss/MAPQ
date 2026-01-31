@@ -59,7 +59,7 @@ mapq-analysis/
 ## Author
 
 **Vansh Singh Ruhela**  
-Independent Researcher  
+Centre for Criminology and Sociolegal Studies, University of Toronto  
 Centre for Criminology and Sociolegal Studies, University of Toronto  
 [GitHub](https://github.com/ruhelavansh-oss) | [ORCID](https://orcid.org/0009-0004-1750-3592)
 
