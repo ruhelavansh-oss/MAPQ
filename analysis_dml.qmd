@@ -43,7 +43,6 @@ library(kableExtra)
 library(stats)
 library(psych)
 
-# Ensure reproducibility
 set.seed(42)
 
 # Load Data Securely
@@ -126,7 +125,6 @@ custom_smote <- function(data, target, k = 5) {
 ```{r}
 #| label: smote-application
 
-# Select columns
 cols <- c("KS", "gender", "age", "education", "workspace", "EE", "EA", "UA", "ER")
 df_mapq <- na.omit(data_raw[, cols])
 
@@ -138,7 +136,6 @@ df_mapq$gender <- NULL
 init_tab <- table(df_mapq$gender_bin)
 print(paste("Initial Balance - 0:", init_tab[1], "| 1:", init_tab[2]))
 
-# Apply SMOTE
 df_balanced <- custom_smote(df_mapq, "gender_bin", k = 3)
 
 # Check Final Balance
@@ -158,21 +155,17 @@ We use the **Interactive Regression Model (IRM)** to estimate the Average Treatm
 ```{r}
 #| label: dml-setup
 
-# Prepare Data.Table
 dml_dt <- as.data.table(df_balanced)
 x_cols <- c("age", "education", "workspace", "EE", "EA", "UA", "ER")
 
-# Initialize Data Object
 dml_data <- DoubleMLData$new(dml_dt,
                              y_col = "KS",
                              d_cols = "gender_bin",
                              x_cols = x_cols)
 
-# Learners: Random Forest (Ranger)
 ml_g <- lrn("regr.ranger", num.trees = 500, max.depth = 5, min.node.size = 2)
 ml_m <- lrn("classif.ranger", num.trees = 500, max.depth = 5, min.node.size = 2, predict_type = "prob")
 
-# Initialize Model
 set.seed(123)
 dml_irm <- DoubleMLIRM$new(dml_data,
                            ml_g = ml_g,
@@ -224,7 +217,6 @@ dml_irm_att$summary()
 ```{r}
 #| label: dml-late
 
-# Synthetic Data for LATE
 generate_late_data <- function(n = 2000) {
   age <- rnorm(n, 40, 10)
   income <- rlnorm(n, 10, 0.5)
@@ -238,7 +230,6 @@ generate_late_data <- function(n = 2000) {
 
 df_synth <- generate_late_data()
 
-# PLIV Model
 dml_data_iv <- DoubleMLData$new(as.data.table(df_synth),
                                 y_col = "Y",
                                 d_cols = "D",

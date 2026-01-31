@@ -124,7 +124,6 @@ set.seed(42499)
 item_means <- colMeans(my.data)
 my_corr_matrix <- cor(my.data)
 
-# Simulate Multivariate Normal Data
 sim1 <- mvrnorm(
   n = 500, 
   mu = item_means, 
@@ -138,7 +137,6 @@ sim1 <- round(sim1)
 sim1 <- apply(sim1, 2, function(x) pmin(pmax(x, 1), 5))
 sim1 <- as.data.frame(sim1)
 
-# Assign original column names for consistency
 colnames(sim1) <- colnames(my.data)
 
 summary(sim1)
@@ -161,7 +159,6 @@ Exploratory Factor Analysis is performed.
 # EFA with 4 factors
 efa_result <- fa(data2, nfactors = 4, rotate = "oblimin", fm = "minres")
 
-# Print and Visualize
 print(efa_result)
 fa.diagram(efa_result)
 ```
@@ -182,13 +179,9 @@ cfa_model <- '
   LC4 =~ ER1 + ER2 + ER3 + ER4 + ER5
 '
 
-# Run CFA
 tryCatch({
   cfa_result <- lavaan::cfa(model = cfa_model, data = data2)
-  
-  # Summary
   summary(cfa_result, fit.measures = TRUE, standardized = TRUE)
-    
 }, error = function(e) {
   message("Error in CFA: ", e$message)
 })
