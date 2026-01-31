@@ -1,6 +1,6 @@
 ---
 title: "Advanced Causal Inference (DML)"
-subtitle: "Double Machine Learning: ATE, LATE, & SMOTE"
+subtitle: "Double Machine Learning: ATE, ATT, LATE, & SMOTE Operations"
 author: "Vansh Singh Ruhela"
 format:
   html:
@@ -21,7 +21,7 @@ execute:
 
 This advanced analysis extends the standard Double Machine Learning (DML) framework to address complex causal inference challenges:
 1.  **Class Imbalance**: Implementing **SMOTE** (Synthetic Minority Over-sampling Technique) to balance treatment groups.
-2.  **Causal Estimands**: Estimating **ATE** (Average Treatment Effect) and **LATE** (Local Average Treatment Effect) using Instrumental Variables.
+2.  **Causal Estimands**: Estimating **ATE** (Average Treatment Effect), **ATT** (Average Treatment Effect on the Treated), and **LATE** (Local Average Treatment Effect) using Instrumental Variables.
 3.  **Heterogeneity**: Investigating Conditional Average Treatment Effects (**CATE**).
 
 We utilize `DoubleML`, `mlr3`, and custom simulation logic to ensure scientific rigor.
@@ -205,18 +205,18 @@ ggplot(df_balanced, aes(x = ps_score, fill = factor(gender_bin))) +
   theme_minimal()
 ```
 
-## Average Treatment Effect on the Treated (ATTE)
+## Average Treatment Effect on the Treated (ATT)
 
-```{r dml-atte}
-#| label: dml-atte
+```{r dml-att}
+#| label: dml-att
 
-dml_irm_atte <- DoubleMLIRM$new(dml_data,
-                                ml_g = ml_g,
-                                ml_m = ml_m,
-                                n_folds = 5,
-                                score = "ATTE")
-dml_irm_atte$fit()
-dml_irm_atte$summary()
+dml_irm_att <- DoubleMLIRM$new(dml_data,
+                               ml_g = ml_g,
+                               ml_m = ml_m,
+                               n_folds = 5,
+                               score = "ATTE") # Estimating ATT
+dml_irm_att$fit()
+dml_irm_att$summary()
 ```
 
 # Instrumental Variable Analysis (LATE)
