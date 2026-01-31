@@ -4,7 +4,7 @@ author: "Vansh Singh Ruhela"
 format:
   html:
     code-fold: true
-    df-print: kable
+    df-print: paged
     toc: true
     number-sections: true
     theme: cosmo
@@ -29,8 +29,6 @@ library(psychTools)
 library(ggplot2)
 library(dotenv)
 library(GPArotation)
-library(knitr)
-library(kableExtra)
 library(MASS)
 library(lavaan)
 
@@ -60,10 +58,7 @@ We inspect descriptive statistics to ensure data quality.
 ```{r descriptives}
 #| label: descriptives
 
-desc_stats <- describe(mapq_data)
-kable(head(desc_stats[, c("mean", "sd", "min", "max", "skew", "kurtosis")]), 
-      caption = "Descriptive Statistics (First 6 Items)") %>%
-  kable_styling(bootstrap_options = "striped")
+describe(mapq_data)
 ```
 
 # 3. Reliability Analysis
@@ -74,34 +69,29 @@ We assess internal consistency using **Cronbach's Alpha** and **McDonald's Omega
 #| label: reliability
 
 # Scale Keys for the 4 Latent Constructs (LC)
-# LC1: Items 1-5, LC2: Items 6-10, LC3: Items 11-15, LC4: Items 16-20
+# LC1: Items 1-5 (EE), LC2: Items 6-10 (EA), LC3: Items 11-15 (UA), LC4: Items 16-20 (ER)
 keys_list <- list(
-  LC1 = 1:5,
-  LC2 = 6:10,
-  LC3 = 11:15,
-  LC4 = 16:20
+  LC1 = c("EE1","EE2","EE3","EE4","EE5"),
+  LC2 = c("EA1","EA2","EA3","EA4","EA5"),
+  LC3 = c("UA1","UA2","UA3","UA4","UA5"),
+  LC4 = c("ER1","ER2","ER3","ER4","ER5")
 )
 
 # Score Items
-scores <- scoreItems(keys_list, mapq_data)
-print(scores, short=FALSE)
+# We use the explicit keys list to match the reference script's logic
+my.keys <- make.keys(mapq_data, keys_list)
+my.scales <- scoreItems(my.keys, mapq_data)
+
+print(my.scales, short=FALSE)
+
+# Score Overlap
+scales.ov <- scoreOverlap(my.keys, mapq_data)
+print(scales.ov, short=FALSE)
 
 # McDonald's Omega
-tryCatch({
-  omega_res <- omega(mapq_data, nfactors = 4, plot = FALSE)
-  
-  # Extract and Format Omega Results
-  omega_summary <- data.frame(
-    Metric = c("Omega Total", "Omega Hierarchical", "Alpha"),
-    Value = c(omega_res$omega.tot, omega_res$omega_h, omega_res$alpha)
-  )
-  
-  print(kable(omega_summary, caption = "Reliability Metrics") %>%
-    kable_styling(full_width = F))
-    
-}, error = function(e) {
-  message("Error in Omega calculation: ", e$message)
-})
+# plot=TRUE to visualize the hierarchical structure as requested
+omega_res <- omega(mapq_data, nfactors = 4, plot = TRUE)
+print(omega_res)
 ```
 
 # 4. Construct Correlations (Visual)
@@ -112,8 +102,9 @@ The relationship between the subscales provides insight into the structural cohe
 #| label: pairs-plot
 #| fig.height: 8
 
-raw_scores <- scores$scores
-pairs.panels(raw_scores, 
+my.scores <- my.scales$scores
+pairs.panels(my.scores, 
+             pch='.',
              method = "pearson", 
              hist.col = "#00AFBB",
              density = TRUE,
@@ -132,23 +123,25 @@ set.seed(42499)
 
 # Parameters from observed data
 item_means <- colMeans(mapq_data, na.rm = TRUE)
-item_cov <- cov(mapq_data, use = "pairwise.complete.obs")
+my_corr_matrix <- cor(mapq_data, use = "pairwise.complete.obs")
 
 # Simulate Multivariate Normal Data
-sim_raw <- mvrnorm(n = 500, mu = item_means, Sigma = item_cov)
+# We use mvrnorm as per the reference script
+sim1 <- mvrnorm(
+  n = 500, 
+  mu = item_means, 
+  Sigma = my_corr_matrix
+)
 
 # Discretize to Likert Scale (1-5)
-sim_data <- as.data.frame(round(sim_raw))
-sim_data <- as.data.frame(lapply(sim_data, function(x) pmin(pmax(x, 1), 5)))
+sim1 <- as.data.frame(sim1)
+sim1 <- round(sim1)
+sim1 <- as.data.frame(lapply(sim1, function(x) pmin(pmax(x, 1), 5)))
 
 # Assign original column names for consistency
-colnames(sim_data) <- colnames(mapq_data)
+colnames(sim1) <- colnames(mapq_data)
 
-# Validation
-kable(head(sim_data), caption = "Simulated Data Preview") %>%
-  kable_styling(bootstrap_options = "striped")
-
-summary(sim_data)
+summary(sim1)
 ```
 
 # 6. Factor Analysis on Simulated Data
@@ -162,9 +155,10 @@ We replicate the EFA and CFA on the simulated dataset to confirm structural stab
 #| fig.height: 8
 
 # EFA with 4 factors
-efa_sim <- fa(sim_data, nfactors = 4, rotate = "oblimin", fm = "minres")
+efa_sim <- fa(sim1, nfactors = 4, rotate = "oblimin", fm = "minres")
 
-# Visualize Factor Diagram
+# Print and Visualize
+print(efa_sim)
 fa.diagram(efa_sim, main = "Factor Structure (Simulated Data)")
 ```
 
@@ -175,28 +169,22 @@ We define the theoretical model where each latent construct (LC) loads onto its 
 ```{r sim-cfa}
 #| label: sim-cfa-model
 
-# Define Model: Explicitly mapping items to LCs based on indices
-# Adjust column names if they are generic (e.g., if columns are X1...X20)
-# Here we assume column names in mapq_data are EE1..5, EA1..5 etc. or similar.
-# We construct the string dynamically to be safe.
-
-col_names <- colnames(sim_data)
-cfa_model <- paste0(
-  "LC1 =~ ", paste(col_names[1:5], collapse = " + "), "\n",
-  "LC2 =~ ", paste(col_names[6:10], collapse = " + "), "\n",
-  "LC3 =~ ", paste(col_names[11:15], collapse = " + "), "\n",
-  "LC4 =~ ", paste(col_names[16:20], collapse = " + ")
-)
+# Define Model using explicit variable names
+cfa_model <- '
+  LC1 =~ EE1 + EE2 + EE3 + EE4 + EE5
+  LC2 =~ EA1 + EA2 + EA3 + EA4 + EA5
+  LC3 =~ UA1 + UA2 + UA3 + UA4 + UA5
+  LC4 =~ ER1 + ER2 + ER3 + ER4 + ER5
+'
 
 # Run CFA
+# We use tryCatch to ensure the report renders even if convergence issues occur, 
+# though with simulated data based on real covariances, it should converge.
 tryCatch({
-  cfa_fit <- cfa(model = cfa_model, data = sim_data)
+  cfa_fit <- cfa(model = cfa_model, data = sim1)
   
-  # Extract Fit Measures
-  fit_indices <- fitmeasures(cfa_fit, c("cfi", "tli", "rmsea", "srmr"))
-  
-  print(kable(as.data.frame(fit_indices), col.names = c("Value"), caption = "CFA Fit Indices (Simulated)") %>%
-    kable_styling(full_width = F))
+  # Summary
+  summary(cfa_fit, fit.measures = TRUE, standardized = TRUE)
     
 }, error = function(e) {
   message("Error in CFA: ", e$message)
