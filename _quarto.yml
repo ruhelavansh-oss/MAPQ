@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: _site
-  title: "MAPQ Scientific Analysis"
+  title: "MAPQ Experiment"
   render:
     - "*.qmd"
 
@@ -9,16 +9,12 @@ author:
   - name: Vansh Singh Ruhela
     corresponding: true
     orcid: 0009-0004-1750-3592
-    email: vansh.ruhela@mail.utoronto.ca
+    email: ruhela.vansh@gmail.com
     affiliations:
-      - name: Centre for Criminology and Sociolegal Studies, School of Graduate Studies, University of Toronto St. George
-        address: Second Floor, Canadiana Gallery, 14 Queen’s Park Crescent West
-        city: Toronto
-        state: ON
-        postal-code: M5S 3K9
+      - name: Independent Researcher
 
 website:
-  title: "MAPQ Scientific Analysis"
+  title: "MAPQ Experiment"
   page-footer: 
     left: "Copyright 2026, Vansh Singh Ruhela" 
     right: 

@@ -1,5 +1,5 @@
 ---
-title: "MAPQ Analysis Project"
+title: "MAPQ Experiment"
 subtitle: "Modified Attitudes on Psychedelics Questionnaire"
 author:
   - name: Vansh Singh Ruhela
