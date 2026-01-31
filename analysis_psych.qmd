@@ -4,66 +4,65 @@ author: "Vansh Singh Ruhela"
 format:
   html:
     code-fold: true
-    df-print: paged
+    df-print: kable
+    toc: true
+    number-sections: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
-# Overview
+# Introduction
 
 This section details the psychometric evaluation of the **Modified Attitudes on Psychedelics Questionnaire (MAPQ)**. We employ classical test theory (CTT) and latent variable modeling to assess the instrument's reliability and construct validity.
 
-## 1. Setup and Secure Data Loading
+# 1. Setup and Data Loading
 
-We use the `dotenv` package to securely manage any potential configuration secrets, ensuring that the analysis pipeline remains secure even when deployed.
+```{r setup}
+#| label: setup-psych
 
-```{r setup, message=FALSE, warning=FALSE}
 library(readxl)
 library(psych)
 library(psychTools)
 library(ggplot2)
 library(dotenv)
 library(GPArotation)
+library(knitr)
+library(kableExtra)
 
-# Load environment variables (silently fails if .env is missing in production)
-try(load_dot_env(), silent = TRUE)
-
-# Securely retrieving a data path or key if needed
-# In this open context, we use the local relative path
+# Secure Data Loading
 data_path <- "data/MAPQ_TKARONTO-3.xlsx" 
-
-# Load the MAPQII sheet
 mapq_data <- read_excel(data_path, sheet = "MAPQII")
 
-# Basic Dimensions
+# Dimensions
 dim_desc <- dim(mapq_data)
 print(paste("Dataset Dimensions:", dim_desc[1], "Observations,", dim_desc[2], "Items"))
 ```
 
-## 2. Item Analysis
+# 2. Item Analysis
 
-We begin by inspecting the descriptive statistics of the items to ensure data quality and distribution suitability.
+We inspect descriptive statistics to ensure data quality.
 
 ```{r descriptives}
-# Descriptive statistics
+#| label: descriptives
+
 desc_stats <- describe(mapq_data)
-knitr::kable(head(desc_stats[, c("mean", "sd", "min", "max", "skew", "kurtosis")]), 
-             caption = "Descriptive Statistics (First 6 Items)")
+kable(head(desc_stats[, c("mean", "sd", "min", "max", "skew", "kurtosis")]), 
+      caption = "Descriptive Statistics (First 6 Items)") %>%
+  kable_styling(bootstrap_options = "striped")
 ```
 
-## 3. Reliability Analysis (Cronbach's Alpha & Omega)
+# 3. Reliability Analysis (Cronbach's Alpha & Omega)
 
-We assess internal consistency using both Cronbach's Alpha and the more robust McDonald's Omega, which does not assume tau-equivalence.
+We assess internal consistency using **McDonald's Omega**, which provides a more robust estimate of reliability than Cronbach's Alpha for multi-factor scales.
 
 ```{r reliability}
-# Define the scale keys based on the 4 latent constructs (LC)
-# LC1: Items 1-5, LC2: Items 6-10, LC3: Items 11-15, LC4: Items 16-20
-keys_list <- list(
-  LC1 = c("EE1","EE2","EE3","EE4","EE5"), # Assuming naming convention or index 1-5
-  LC2 = c("EA1","EA2","EA3","EA4","EA5"), # Index 6-10
-  LC3 = c("UA1","UA2","UA3","UA4","UA5"), # Index 11-15
-  LC4 = c("ER1","ER2","ER3","ER4","ER5")  # Index 16-20
-)
+#| label: reliability
 
-# Since raw column names might differ, we use indices for safety as per original script
+# Scale Keys for the 4 Latent Constructs (LC)
+# LC1: Items 1-5, LC2: Items 6-10, LC3: Items 11-15, LC4: Items 16-20
 keys_indices <- list(
   LC1 = 1:5,
   LC2 = 6:10,
@@ -71,36 +70,45 @@ keys_indices <- list(
   LC4 = 16:20
 )
 
-# Calculate Scores
+# Score Items
 scores <- scoreItems(keys_indices, mapq_data)
 print(scores, short=FALSE)
 
-# McDonald's Omega (Hierarchical)
-# Validating the general factor saturation
+# McDonald's Omega
 omega_res <- omega(mapq_data, nfactors = 4, plot = FALSE)
-print(omega_res$omega.tot)
+
+# Extract and Format Omega Results
+omega_summary <- data.frame(
+  Metric = c("Omega Total", "Omega Hierarchical", "Alpha"),
+  Value = c(omega_res$omega.tot, omega_res$omega_h, omega_res$alpha)
+)
+
+kable(omega_summary, caption = "Reliability Metrics") %>%
+  kable_styling(full_width = F)
 ```
 
-## 4. Factor Analysis
+# 4. Factor Analysis (EFA)
 
-### Exploratory Factor Analysis (EFA)
-
-We extract 4 factors using MinRes extraction and Oblimin rotation to allow for correlations between the latent constructs (Attitudes dimensions).
+We perform Exploratory Factor Analysis (EFA) with 4 factors and Oblimin rotation to confirm the theoretical structure.
 
 ```{r efa}
+#| label: efa-plot
+#| fig.height: 8
+
 # EFA with 4 factors
 efa_fit <- fa(mapq_data, nfactors = 4, rotate = "oblimin", fm = "minres")
 
-# Visualize the factor structure
+# Visualize
 fa.diagram(efa_fit, main = "MAPQ Factor Structure")
 ```
 
-## 5. Correlations Between Constructs
+# 5. Construct Correlations
 
-The relationship between the subscales (Latent Constructs) provides insight into the structural coherence of the MAPQ.
+The relationship between the subscales provides insight into the structural coherence of the MAPQ.
 
 ```{r correlations}
-# Correlation plot of the scale scores
+#| label: pairs-plot
+
 raw_scores <- scores$scores
 pairs.panels(raw_scores, 
              method = "pearson", 
@@ -109,7 +117,3 @@ pairs.panels(raw_scores,
              ellipses = TRUE,
              main = "Correlations Between MAPQ Subscales")
 ```
-
-# Conclusion
-
-The psychometric analysis confirms that the **Modified APQ** exhibits a stable 4-factor structure within the Canadian cohort. The reliability coefficients (Alpha and Omega) suggest strong internal consistency for the proposed subscales.

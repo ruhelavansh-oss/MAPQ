@@ -10,7 +10,7 @@
 /_site/
 .ipynb_checkpoints/
 rsconnect/
-manifest.json
+# manifest.json
 
 **/*.quarto_ipynb
 R_libs/
