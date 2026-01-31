@@ -4295,17 +4295,23 @@
     "_site/about.html": {
       "checksum": "678c9b2831e5ad526915988599895485"
     },
+    "_site/analysis_dml_files/figure-html/dml-fit-plot-1.png": {
+      "checksum": "ffc2fa09a0c825ebf83ad81ac46238d1"
+    },
     "_site/analysis_dml.html": {
-      "checksum": "52bbadf92f01614a46eb386e61437306"
+      "checksum": "9eb0107526bd0204744220b4126cbbe9"
     },
     "_site/analysis_psych_files/figure-html/pairs-plot-1.png": {
-      "checksum": "8e35f5e10cb54ef7de8b7aab86135bd6"
+      "checksum": "99d58c737161e43ae3940b879a1806a0"
+    },
+    "_site/analysis_psych_files/figure-html/reliability-1.png": {
+      "checksum": "83493d16859bb0758c7fac6a9bdbae22"
     },
     "_site/analysis_psych_files/figure-html/sim-efa-plot-1.png": {
-      "checksum": "985e8f121b5c327b095348c1c3bcfd73"
+      "checksum": "38d681e30fb412bcdbb52e4cf1f5d1ed"
     },
     "_site/analysis_psych.html": {
-      "checksum": "0ed96cc03b6a06f06db86547a8051899"
+      "checksum": "2ac716cacd56f72359c6a97b9e308262"
     },
     "_site/index.html": {
       "checksum": "6e95532663dd1c5e3cb5fbe849a56b36"
@@ -4317,7 +4323,7 @@
       "checksum": "ace9d3a9c2c80164cf84700fff6adc8e"
     },
     "_site/search.json": {
-      "checksum": "6adad0f59840b9cd12611c84d56329f3"
+      "checksum": "280f06cd38997371b6a05d499b397a07"
     },
     "_site/site_libs/bootstrap/bootstrap-3d184695bb015ad6d4eccee7f8f70647.min.css": {
       "checksum": "3d184695bb015ad6d4eccee7f8f70647"
@@ -4398,10 +4404,10 @@
       "checksum": "c4060992b8460392bd3d47fec4828583"
     },
     "analysis_dml.qmd": {
-      "checksum": "53c9ac54147bae8cf4926f4ff3f4f8de"
+      "checksum": "ba1662542858f167c81283a92247df9a"
     },
     "analysis_psych.qmd": {
-      "checksum": "8ded2a61360b2de9d56fb410efb1c103"
+      "checksum": "dd95051aa0c2caf12a9baea4c106d70a"
     },
     "data/MAPQ_TKARONTO-3.xlsx": {
       "checksum": "5200997fe1f9d79bf04990cc8a46576b"

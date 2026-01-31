@@ -34,20 +34,20 @@ library(lavaan)
 
 # Secure Data Loading
 data_path <- "data/MAPQ_TKARONTO-3.xlsx" 
-mapq_data <- read_excel(data_path, sheet = "MAPQII")
+my.data <- read_excel(data_path, sheet = "MAPQII")
 
 # Data Type Validation
-if (!all(sapply(mapq_data, is.numeric))) {
+if (!all(sapply(my.data, is.numeric))) {
   stop("Error: MAPQII dataset contains non-numeric columns. Please check input file.")
 }
 
 # Range Validation (Likert Scale 1-5 check)
-if (any(mapq_data < 1 | mapq_data > 5, na.rm = TRUE)) {
+if (any(my.data < 1 | my.data > 5, na.rm = TRUE)) {
   warning("Data contains values outside the expected Likert range (1-5).")
 }
 
 # Dimensions
-dim_desc <- dim(mapq_data)
+dim_desc <- dim(my.data)
 print(paste("Dataset Dimensions:", dim_desc[1], "Observations,", dim_desc[2], "Items"))
 ```
 
@@ -58,7 +58,7 @@ We inspect descriptive statistics to ensure data quality.
 ```{r descriptives}
 #| label: descriptives
 
-describe(mapq_data)
+describe(my.data)
 ```
 
 # 3. Reliability Analysis
@@ -70,27 +70,26 @@ We assess internal consistency using **Cronbach's Alpha** and **McDonald's Omega
 
 # Scale Keys for the 4 Latent Constructs (LC)
 # LC1: Items 1-5 (EE), LC2: Items 6-10 (EA), LC3: Items 11-15 (UA), LC4: Items 16-20 (ER)
-keys_list <- list(
-  LC1 = c("EE1","EE2","EE3","EE4","EE5"),
-  LC2 = c("EA1","EA2","EA3","EA4","EA5"),
-  LC3 = c("UA1","UA2","UA3","UA4","UA5"),
-  LC4 = c("ER1","ER2","ER3","ER4","ER5")
-)
+# Matches mapqii.Rmd indexing
+my.keys <- make.keys(my.data, list(
+  LC1 = c(1,2,3,4,5),
+  LC2 = c(6,7,8,9,10),
+  LC3 = c(11,12,13,14,15),
+  LC4 = c(16,17,18,19,20)
+))
 
 # Score Items
-# We use the explicit keys list to match the reference script's logic
-my.keys <- make.keys(mapq_data, keys_list)
-my.scales <- scoreItems(my.keys, mapq_data)
-
+my.scales <- scoreItems(my.keys, my.data)
 print(my.scales, short=FALSE)
 
 # Score Overlap
-scales.ov <- scoreOverlap(my.keys, mapq_data)
+scales.ov <- scoreOverlap(my.keys, my.data)
 print(scales.ov, short=FALSE)
 
-# McDonald's Omega
-# plot=TRUE to visualize the hierarchical structure as requested
-omega_res <- omega(mapq_data, nfactors = 4, plot = TRUE)
+# McDonald's Omega (Real Data)
+# Note: mapqii.Rmd runs this on 'small.msq' which is a subset of my.data columns.
+# Since my.data ONLY has the 20 items, small.msq == my.data
+omega_res <- omega(my.data, nfactors = 4, plot = TRUE)
 print(omega_res)
 ```
 
@@ -122,11 +121,11 @@ To validate the robustness of the factor structure, we perform a **Monte Carlo S
 set.seed(42499)
 
 # Parameters from observed data
-item_means <- colMeans(mapq_data, na.rm = TRUE)
-my_corr_matrix <- cor(mapq_data, use = "pairwise.complete.obs")
+# Using strict replication of mapqii.Rmd logic
+item_means <- colMeans(my.data)
+my_corr_matrix <- cor(my.data)
 
 # Simulate Multivariate Normal Data
-# We use mvrnorm as per the reference script
 sim1 <- mvrnorm(
   n = 500, 
   mu = item_means, 
@@ -136,12 +135,15 @@ sim1 <- mvrnorm(
 # Discretize to Likert Scale (1-5)
 sim1 <- as.data.frame(sim1)
 sim1 <- round(sim1)
-sim1 <- as.data.frame(lapply(sim1, function(x) pmin(pmax(x, 1), 5)))
+# Use apply as in mapqii.Rmd to ensure matrix-based clipping then back to DF
+sim1 <- apply(sim1, 2, function(x) pmin(pmax(x, 1), 5))
+sim1 <- as.data.frame(sim1)
 
 # Assign original column names for consistency
-colnames(sim1) <- colnames(mapq_data)
+colnames(sim1) <- colnames(my.data)
 
 summary(sim1)
+data2 <- sim1
 ```
 
 # 6. Factor Analysis on Simulated Data
@@ -155,11 +157,11 @@ We replicate the EFA and CFA on the simulated dataset to confirm structural stab
 #| fig.height: 8
 
 # EFA with 4 factors
-efa_sim <- fa(sim1, nfactors = 4, rotate = "oblimin", fm = "minres")
+efa_result <- fa(data2, nfactors = 4, rotate = "oblimin", fm = "minres")
 
 # Print and Visualize
-print(efa_sim)
-fa.diagram(efa_sim, main = "Factor Structure (Simulated Data)")
+print(efa_result)
+fa.diagram(efa_result)
 ```
 
 ## 6.2 Confirmatory Factor Analysis (CFA)
@@ -170,6 +172,7 @@ We define the theoretical model where each latent construct (LC) loads onto its 
 #| label: sim-cfa-model
 
 # Define Model using explicit variable names
+# Assuming columns are EE1..EE5, EA1..EA5 etc.
 cfa_model <- '
   LC1 =~ EE1 + EE2 + EE3 + EE4 + EE5
   LC2 =~ EA1 + EA2 + EA3 + EA4 + EA5
@@ -178,13 +181,11 @@ cfa_model <- '
 '
 
 # Run CFA
-# We use tryCatch to ensure the report renders even if convergence issues occur, 
-# though with simulated data based on real covariances, it should converge.
 tryCatch({
-  cfa_fit <- cfa(model = cfa_model, data = sim1)
+  cfa_result <- lavaan::cfa(model = cfa_model, data = data2)
   
   # Summary
-  summary(cfa_fit, fit.measures = TRUE, standardized = TRUE)
+  summary(cfa_result, fit.measures = TRUE, standardized = TRUE)
     
 }, error = function(e) {
   message("Error in CFA: ", e$message)
