@@ -18,7 +18,7 @@ format:
 
 # Contributor Statement
 
-This project, including the conceptualization, data analysis, and technical implementation of the Modified APQ (MAPQ) pipeline, was **solely contributed** by Vansh Singh Ruhela.
+This project, including the conceptualization, data investigation, and technical implementation of the Modified APQ (MAPQ) pipeline, was **solely contributed** by the Principal Investigator.
 
 # About the MAPQ
 
@@ -34,7 +34,7 @@ This version of the questionnaire was specifically adapted and validated for a c
 
 # Technical Implementation
 
-This website and analysis pipeline were built using a secure, reproducible stack:
+This website and investigation framework were built using a secure, reproducible stack:
 
 -   **Quarto**: For scientific publishing and reproducibility.
 -   **R & Python**: For statistical analysis (Psych, DoubleML).
@@ -43,7 +43,7 @@ This website and analysis pipeline were built using a secure, reproducible stack
 
 # Contact
 
-For inquiries regarding the MAPQ data or this analysis, please contact the author via the GitHub repository linked above.
+For inquiries regarding the MAPQ data or this study, please contact the author via the GitHub repository linked above.
 
 # Related Projects
 

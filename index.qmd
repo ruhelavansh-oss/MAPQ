@@ -27,8 +27,8 @@ The **Modified Attitudes on Psychedelics Questionnaire (MAPQ)** is a psychometri
 
 This scientific project encompasses two primary analytical pillars:
 
-1.  **Psychometric Validation**: Rigorous assessment of the MAPQ's internal structure using Exploratory Factor Analysis (EFA), Confirmatory Factor Analysis (CFA), and McDonald's Omega reliability estimates.
-2.  **Causal Inference**: Application of **Double Machine Learning (DML)** to estimate causal effects within the dataset, specifically investigating the impact of demographic factors (e.g., Gender) on Knowledge Sharing (KS) behaviors, controlling for high-dimensional confounding.
+1.  **Psychometric Investigation**: Rigorous assessment of the MAPQ's internal structure using Exploratory Factor Analysis (EFA), Confirmatory Factor Analysis (CFA), and McDonald's Omega reliability estimates.
+2.  **Causal Inference**: Application of a **Double Machine Learning (DML)** framework to estimate causal effects within the dataset, specifically investigating the impact of demographic factors (e.g., Gender) on Knowledge Sharing (KS) behaviors, controlling for high-dimensional confounding.
 
 ## Security & Reproducibility
 
@@ -36,12 +36,14 @@ This project adheres to strict **DevSecOps** principles:
 
 -   **Data Privacy**: All sensitive data handling is secured via environment-variable encryption logic.
 -   **Reproducibility**: The entire workflow is version-controlled and containerized for deployment on Posit Connect.
--   **Scientific Rigor**: Analysis uses advanced statistical packages (`psych`, `DoubleML`, `lavaan`) to ensure robust results.
+-   **Scientific Rigor**: Investigation uses advanced statistical packages (`psych`, `DoubleML`, `lavaan`) to ensure robust results.
 
 ## Data Source
 
-The data is sourced from an observational dataset, containing responses from the Canadian cohort. The analysis focuses on the `MAPQII` and `MAPQ + KS + KnAcqS` datasheets.
+The data is sourced from an observational dataset, containing responses from the Canadian cohort. The study focuses on the `MAPQII` and `MAPQ + KS + KnAcqS` datasheets.
 
 ::: {.callout-note}
-**Note on Authorship**: This analysis, design, and implementation were solely contributed by **Vansh Singh Ruhela**.
+## Authorship Statement
+
+This study, including its conceptualization, framework design, and implementation, was solely contributed by the **Principal Investigator**.
 :::
